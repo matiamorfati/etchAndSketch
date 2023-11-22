@@ -1,3 +1,6 @@
+
+let colorChoice = "black";
+
 document.addEventListener("DOMContentLoaded", function(){
     createBoard(8);
 
@@ -20,6 +23,7 @@ function createBoard(size){
     for(let i = 0; i < numDivs; i++){
         let div = document.createElement("div");
         board.insertAdjacentElement('beforeend', div);
+        div.addEventListener("mouseover", changeColor);
     }
 }
 
@@ -37,4 +41,22 @@ function getSize(){
         message.innerHTML = "now you can play";
         return input;
     }
+}
+
+function getColor(newColor){
+    colorChoice = newColor;
+}
+
+function changeColor(){
+    if(colorChoice == "random"){
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    }
+    else{
+        this.style.backgroundColor = 'black';
+    }
+}
+
+function resetBoard(){
+    let divs = document.querySelectorAll("div");
+    divs.forEach((div) => div.style.backgroundColor = 'white');
 }
