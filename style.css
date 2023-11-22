@@ -29,3 +29,7 @@ body{
     display: grid; 
     border: 1px solid black;
 }
+
+#message {
+    font-size: 24px;
+}
