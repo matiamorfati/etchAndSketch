@@ -1,8 +1,24 @@
 
 let colorChoice = "black";
+let click = false;
 
 document.addEventListener("DOMContentLoaded", function(){
     createBoard(8);
+
+    document.querySelector("body").addEventListener("click", function(e){
+        if(e.target.tagName != "BUTTON"){
+            click = !click;
+        }
+
+        let draw = document.querySelector("#toggleDrawing");
+
+        if(click){
+            draw.innerHTML = "You can draw your masterpiece now!";
+        }
+        else{
+            draw.innerHTML = "click your mouse to draw!";
+        }
+    });
 
     let btn_popup = document.querySelector("#popup");
     btn_popup.addEventListener("click", function(){
@@ -48,11 +64,13 @@ function getColor(newColor){
 }
 
 function changeColor(){
-    if(colorChoice == "random"){
-        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    }
-    else{
-        this.style.backgroundColor = 'black';
+    if(click){
+        if(colorChoice == "random"){
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+        else{
+            this.style.backgroundColor = 'black';
+        }
     }
 }
 
